@@ -7,7 +7,8 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 
-db_url = urlparse(os.environ.get('JAWSDB_URL'))
+urld = 'mysql://yzpsacwal98r867h:mf5cbifkgu22deyu@fojvtycq53b2f2kx.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/vazm5zzs3gf78nf8'
+db_url = urlparse(urld)
 
 # MySQL konfigürasyonları
 app.config['MYSQL_HOST'] = db_url.hostname
