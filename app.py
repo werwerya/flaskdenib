@@ -1,13 +1,19 @@
+
+import os
+from urllib.parse import urlparse
 from flask import Flask, request, render_template
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
+
+db_url = urlparse(os.environ.get('JAWSDB_URL'))
+
 # MySQL konfigürasyonları
-app.config['MYSQL_HOST'] = '192.168.0.11'
-app.config['MYSQL_USER'] = 'yasar'
-app.config['MYSQL_PASSWORD'] = 'yasar'
-app.config['MYSQL_DB'] = 'myflaskapp'  # Boşluk karakterini kaldırdım.
+app.config['MYSQL_HOST'] = db_url.hostname
+app.config['MYSQL_USER'] = db_url.username
+app.config['MYSQL_PASSWORD'] = db_url.password
+app.config['MYSQL_DB'] = db_url.path[1:]
 
 mysql = MySQL(app)
 
